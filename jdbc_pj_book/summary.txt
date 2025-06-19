@@ -1,0 +1,14 @@
+플젝가이드
+
+DTO(데이터 전송 객체 : Data Transfer Object)
+		입력(INSERT), 수정(UPDATE) : 화면(setter) -> 멤버변수 -> getter(DB)
+		조회(SELECT) : setter(DB) => 멤버변수 -> getter(화면)
+		
+DAO(데이터 접근 객체 : Data Access Object) => CRUD(생성,수정,삭제,조회)		
+
+화면단(View) - 콘솔 : BookMain -> Menu -> 메뉴선택 	
+백엔드단(비지니스로직구현) : 
+		-> BookController (C, 컨트롤러) :어떤 요청인지 판단
+		-> Model(M,모델) = 서비스 + DAO + DTO
+	 		=> BookServiceImpl(BookService) -> BookDAOImpl(BookDAO)
+				(서비스 : DAO호출, 결과 리턴)		   (DAO : 데이터 입력,수정,삭제,조회)
