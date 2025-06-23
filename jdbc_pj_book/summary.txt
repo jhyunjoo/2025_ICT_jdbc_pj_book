@@ -12,3 +12,19 @@ DAO(데이터 접근 객체 : Data Access Object) => CRUD(생성,수정,삭제,�
 		-> Model(M,모델) = 서비스 + DAO + DTO
 	 		=> BookServiceImpl(BookService) -> BookDAOImpl(BookDAO)
 				(서비스 : DAO호출, 결과 리턴)		   (DAO : 데이터 입력,수정,삭제,조회)
+				
+---------------------------------------------------------------------------------------------------------
+
+-- {jdbc 테이블 생성 } --
+-- 1) 도서 정보 테이블(SCITT_05 계정)
+DROP TABLE mvc_book_tbl CASCADE CONSTRAINTS;
+CREATE TABLE mvc_book_tbl (
+	bookId 		NUMBER(4)		PRIMARY KEY, 	-- 도서번호
+	title		VARCHAR2(50)	NOT NULL,		-- 도서명
+	author		VARCHAR2(50)	NOT NULL,		-- 저자
+	publisher	VARCHAR2(50)	NOT NULL,		-- 출판사
+	price		NUMBER(7)		NOT NULL,		-- 가격
+	pubdate		DATE 			DEFAULT SYSDATE	-- 출판일
+);
+
+SELECT * FROM mvc_book_tbl;

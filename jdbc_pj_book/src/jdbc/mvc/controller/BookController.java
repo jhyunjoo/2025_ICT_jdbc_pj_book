@@ -2,6 +2,7 @@ package jdbc.mvc.controller;
 
 import jdbc.mvc.dto.BookDTO;
 import jdbc.mvc.service.BookServiceImpl;
+import jdbc.mvc.view.BookView;
 
 /*
  *  작성일 : 2025.6.18
@@ -14,18 +15,44 @@ import jdbc.mvc.service.BookServiceImpl;
 public class BookController {
 
 	BookServiceImpl service = new BookServiceImpl();
+	BookView view = new BookView();
 	
 	// 1. 도서 추가
 	public void bookAdd(BookDTO dto) {
 		System.out.println("<<< bookInsert() >>>");
 		System.out.println(dto);
 		
-		service.bookInsert(dto);
+		int insertCnt = service.bookInsert(dto);
+		if(insertCnt == 1) {
+			System.out.println("책 추가 성공" + insertCnt);
+		} else {
+			view.bookErrorMsg("insert");
+		}
 	}
 	
 	// 2. 도서 수정
+	public void bookUpdate(BookDTO dto) {
+		System.out.println("<<< bookUpdate() >>>");
+		System.out.println(dto);
+		
+		int updateCnt = service.bookUpdate(dto);
+		if(updateCnt == 1) {
+			System.out.println("책 수정 성공" + updateCnt );
+		} else {
+			view.bookErrorMsg("delete");
+		}
+	}
 	
 	// 3. 도서 삭제
+	public void bookDelete(int bookId) {
+		System.out.println("<<< bookDelete() >>>");
+		int deleteCnt = service.bookDelete(bookId);
+		if(deleteCnt == 1) {
+			System.out.println("책 삭제 성공" + deleteCnt);
+		} else {
+			view.bookErrorMsg("delete");
+		}
+	}
 	
 	// 4. 도서아이디 조회
 	

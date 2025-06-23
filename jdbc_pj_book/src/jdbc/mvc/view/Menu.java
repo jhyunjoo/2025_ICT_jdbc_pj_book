@@ -12,6 +12,8 @@ public class Menu {
 	// 컨트롤러
 	BookController bc = new BookController();
 
+	BookDTO dto = new BookDTO();
+	
 	// 1. 도서관리  2. 게시판  3. 내가 좋아하는 주제  4. 종료
 	public void displayMenu() {
 		
@@ -60,8 +62,12 @@ public class Menu {
 				bc.bookAdd(bookInput());
 				break;
 			case 2 :
+				bc.bookUpdate(bookUpdate());
 				break;
 			case 3 :
+				System.out.print("삭제할 책 번호 : ");
+				int bookId = sc.nextInt();
+				bc.bookDelete(bookId);
 				break;
 			case 4 :
 				break;
@@ -83,7 +89,7 @@ public class Menu {
 		
 		// 콘솔에서 입력받은 값 -> setter 로 BookDTO 멤버변수에 전달
 		// BookDTO 생성
-		BookDTO dto = new BookDTO();
+		// BookDTO dto = new BookDTO();
 		
 		System.out.print("도서명 : ");
 		dto.setTitle(sc.nextLine());
@@ -96,6 +102,19 @@ public class Menu {
 		
 		System.out.print("가격 : ");
 		dto.setPrice(sc.nextInt());
+		
+		return dto;
+	}
+	
+	public BookDTO bookUpdate() {
+		// BookDTO dto = new BookDTO();
+		
+		System.out.print("책번호 : ");
+		dto.setBookId(sc.nextInt());
+		
+		sc.nextLine();
+		
+		dto = bookInput();
 		
 		return dto;
 	}
