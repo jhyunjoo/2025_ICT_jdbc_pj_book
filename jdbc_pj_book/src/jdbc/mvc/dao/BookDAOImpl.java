@@ -57,7 +57,7 @@ public class BookDAOImpl implements BookDAO {
 
 	// 2. 도서 수정
 	@Override
-	public int bookUpdate(BookDTO dto) {
+	public int bookUpdate(int bookId, BookDTO dto) {
 		System.out.println("BookDAOImpl - bookUpdate()");
 		
 		String query = "UPDATE MVC_BOOK_TBL SET title = ?, author = ?, publisher = ?, price = ? WHERE bookid = ?";
@@ -71,7 +71,7 @@ public class BookDAOImpl implements BookDAO {
 			pstmt.setString(2, dto.getAuthor());
 			pstmt.setString(3, dto.getPublisher());
 			pstmt.setInt(4, dto.getPrice());
-			pstmt.setInt(5, dto.getBookId());
+			pstmt.setInt(5, bookId);
 			
 			updateCnt = pstmt.executeUpdate();
 			

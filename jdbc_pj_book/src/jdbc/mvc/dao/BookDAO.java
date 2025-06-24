@@ -8,7 +8,7 @@ public interface BookDAO {
 	public int bookInsert(BookDTO dto);
 	
 	// 2. 도서 수정
-	public int bookUpdate(BookDTO dto);
+	public int bookUpdate(int bookId, BookDTO dto);
 	
 	// 3. 도서 삭제
 	public int bookDelete(int bookId);

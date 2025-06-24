@@ -31,11 +31,11 @@ public class BookController {
 	}
 	
 	// 2. 도서 수정
-	public void bookUpdate(BookDTO dto) {
+	public void bookUpdate(int bookId, BookDTO dto) {
 		System.out.println("<<< bookUpdate() >>>");
-		System.out.println(dto);
+		System.out.println(bookId + " : " +dto);
 		
-		int updateCnt = service.bookUpdate(dto);
+		int updateCnt = service.bookUpdate(bookId, dto);
 		if(updateCnt == 1) {
 			System.out.println("책 수정 성공" + updateCnt );
 		} else {
@@ -55,9 +55,17 @@ public class BookController {
 	}
 	
 	// 4. 도서아이디 조회
+	public void bookSelectId(int bookId) {
+		System.out.println("<<< bookSelectId() >>>");
+	}
 	
 	// 5. 도서목록 조회
+	public void bookSelectTitle(String title) {
+		System.out.println("<<< bookSelectTitle() >>>");
+	}
 	
 	// 6. 전체목록 조회
-	
+	public void bookSelectAll() {
+		System.out.println("<<< bookSelectAll() >>>");
+	}
 }

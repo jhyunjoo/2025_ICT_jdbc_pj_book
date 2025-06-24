@@ -17,9 +17,9 @@ public class BookServiceImpl implements BookService{
 
 	// 2. 도서 수정
 	@Override
-	public int bookUpdate(BookDTO dto) {
+	public int bookUpdate(int bookId, BookDTO dto) {
 		System.out.println("BookServiceImpl - bookUpdate()");
-		int updateCnt = dao.bookUpdate(dto);
+		int updateCnt = dao.bookUpdate(bookId, dto);
 		return updateCnt;
 	}
 

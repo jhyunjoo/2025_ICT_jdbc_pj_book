@@ -11,8 +11,6 @@ public class Menu {
 	Scanner sc = new Scanner(System.in);
 	// 컨트롤러
 	BookController bc = new BookController();
-
-	BookDTO dto = new BookDTO();
 	
 	// 1. 도서관리  2. 게시판  3. 내가 좋아하는 주제  4. 종료
 	public void displayMenu() {
@@ -51,7 +49,7 @@ public class Menu {
 		System.out.println("<<< book_menu >>>");
 		
 		System.out.println("*--------------------------------------------------------------------------*");
-		System.out.println("  1. 추가  2. 수정  3. 삭제  4. 도서아이디 조회  5. 도서목록 조회  6. 전체목록 조회  7. 종료  ");
+		System.out.println("  1. 추가  2. 수정  3. 삭제  4. 도서아이디 조회  5. 도서목록 타이틀 조회  6. 전체목록 조회  7. 종료  ");
 		System.out.println("*--------------------------------------------------------------------------*");
 		System.out.print("▶ 메뉴 선택 : ");
 		int menuNo = sc.nextInt();
@@ -62,12 +60,10 @@ public class Menu {
 				bc.bookAdd(bookInput());
 				break;
 			case 2 :
-				bc.bookUpdate(bookUpdate());
+				bc.bookUpdate(bookId(), bookInput());
 				break;
 			case 3 :
-				System.out.print("삭제할 책 번호 : ");
-				int bookId = sc.nextInt();
-				bc.bookDelete(bookId);
+				bc.bookDelete(bookId());
 				break;
 			case 4 :
 				break;
@@ -89,7 +85,7 @@ public class Menu {
 		
 		// 콘솔에서 입력받은 값 -> setter 로 BookDTO 멤버변수에 전달
 		// BookDTO 생성
-		// BookDTO dto = new BookDTO();
+		BookDTO dto = new BookDTO();
 		
 		System.out.print("도서명 : ");
 		dto.setTitle(sc.nextLine());
@@ -106,17 +102,28 @@ public class Menu {
 		return dto;
 	}
 	
-	public BookDTO bookUpdate() {
-		// BookDTO dto = new BookDTO();
-		
-		System.out.print("책번호 : ");
-		dto.setBookId(sc.nextInt());
-		
-		sc.nextLine();
-		
-		dto = bookInput();
-		
-		return dto;
+//	public BookDTO bookUpdate() {
+//		 BookDTO dto = new BookDTO();
+//		
+//		System.out.print("책번호 : ");
+//		int id = sc.nextInt();
+//		
+//		sc.nextLine();
+//		
+//		dto = bookInput();
+//		dto.setBookId(id);
+//		
+//		return dto;
+//	}
+	
+	public int bookId() {
+		System.out.print("책 번호 : ");
+		return Integer.parseInt(sc.nextLine());		// String을 int로 변환
+	}
+	
+	public String bookTitle() {
+		System.out.print("책 제목 : ");
+		return sc.nextLine();
 	}
 
 	// 2. 게시판 메뉴
