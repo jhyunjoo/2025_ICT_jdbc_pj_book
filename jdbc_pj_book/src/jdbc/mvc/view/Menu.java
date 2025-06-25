@@ -66,6 +66,7 @@ public class Menu {
 				bc.bookDelete(bookId());
 				break;
 			case 4 :
+				bc.bookSelectId(bookId());
 				break;
 			case 5 :
 				break;

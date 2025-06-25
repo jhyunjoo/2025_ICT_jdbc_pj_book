@@ -14,8 +14,10 @@ public interface BookService {
 	public int bookDelete(int bookId);
 	
 	// 4. 도서아이디 조회
+	public BookDTO bookSelectById(int bookId);
 	
 	// 5. 도서목록 조회
+	public BookDTO bookSelectByTitle(String title);
 	
 	// 6. 전체목록 조회
 	

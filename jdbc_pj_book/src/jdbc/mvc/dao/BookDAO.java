@@ -12,5 +12,11 @@ public interface BookDAO {
 	
 	// 3. 도서 삭제
 	public int bookDelete(int bookId);
+	
+	// 4. 도서 아이디 조회
+	public BookDTO SelectBookById(int bookId);
+	
+	// 5. 도서 목록 조회
+	public BookDTO SelectBookByTitle(String title);
 
 }

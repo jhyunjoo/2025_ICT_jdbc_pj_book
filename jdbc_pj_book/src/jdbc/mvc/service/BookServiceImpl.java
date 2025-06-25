@@ -31,4 +31,18 @@ public class BookServiceImpl implements BookService{
 		return deleteCnt;
 	}
 
+	// 4. 도서 아이디 조회
+	@Override
+	public BookDTO bookSelectById(int bookId) {
+		System.out.println("BookServiceImpl - bookSelectById()");
+		BookDTO dto = dao.SelectBookById(bookId);
+		return dto;
+	}
+
+	// 도서 목록 조회
+	@Override
+	public BookDTO bookSelectByTitle(String title) {
+		return null;
+	}
+
 }

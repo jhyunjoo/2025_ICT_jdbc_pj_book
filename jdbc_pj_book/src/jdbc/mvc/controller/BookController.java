@@ -57,6 +57,12 @@ public class BookController {
 	// 4. 도서아이디 조회
 	public void bookSelectId(int bookId) {
 		System.out.println("<<< bookSelectId() >>>");
+		BookDTO dto = service.bookSelectById(bookId);
+		if(dto.getBookId() == bookId) {
+			view.bookSelect(dto);
+		} else {
+			view.bookErrorMsg("select");
+		}
 	}
 	
 	// 5. 도서목록 조회

@@ -118,4 +118,48 @@ public class BookDAOImpl implements BookDAO {
 		return deleteCnt;
 	}
 
+	// 4. 도서 아이디 조회
+	@Override
+	public BookDTO SelectBookById(int bookId) {
+		System.out.println("BookDAOImpl - bookDelete()");
+		
+		String query = "SELECT * FROM MVC_BOOK_TBL WHERE bookid = ?";
+		BookDTO dto = new BookDTO();
+		
+		try {
+			conn = DriverManager.getConnection(dbUrl, dbID, dbPW);
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, bookId);
+			
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				dto.setBookId(rs.getInt("bookid"));
+				dto.setTitle(rs.getString("title"));
+				dto.setAuthor(rs.getString("author"));
+				dto.setPublisher(rs.getString("publisher"));
+				dto.setPrice(rs.getInt("price"));
+				dto.setPubdate(rs.getString("pubdate"));
+			} 
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return dto;
+	}
+
+	// 5. 도서 목록 조회
+	@Override
+	public BookDTO SelectBookByTitle(String title) {
+		return null;
+	}
+	
+
 }
