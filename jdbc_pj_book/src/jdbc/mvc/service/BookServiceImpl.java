@@ -1,5 +1,7 @@
 package jdbc.mvc.service;
 
+import java.util.List;
+
 import jdbc.mvc.dao.BookDAOImpl;
 import jdbc.mvc.dto.BookDTO;
 
@@ -31,18 +33,28 @@ public class BookServiceImpl implements BookService{
 		return deleteCnt;
 	}
 
-	// 4. 도서 아이디 조회
+	// 4. 도서 아이디로 조회
 	@Override
 	public BookDTO bookSelectById(int bookId) {
 		System.out.println("BookServiceImpl - bookSelectById()");
-		BookDTO dto = dao.SelectBookById(bookId);
+		BookDTO dto = dao.bookSelectById(bookId);
 		return dto;
 	}
 
-	// 도서 목록 조회
+	// 5. 도서 제목으로 조회
 	@Override
-	public BookDTO bookSelectByTitle(String title) {
-		return null;
+	public List<BookDTO> bookSelectByTitle(String title) {
+		System.out.println("BookServiceImpl - bookSelectByTitle()");
+		List<BookDTO> list = dao.bookSelectByTitle(title);
+		return list;
+	}
+
+	// 6. 전체 목록 조회
+	@Override
+	public List<BookDTO> bookSelectAll() {
+		System.out.println("BookServiceImpl - bookSelectAll()");
+		List<BookDTO> list = dao.bookSelectAll();
+		return list;
 	}
 
 }

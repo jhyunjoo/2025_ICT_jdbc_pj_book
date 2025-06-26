@@ -1,5 +1,7 @@
 package jdbc.mvc.service;
 
+import java.util.List;
+
 import jdbc.mvc.dto.BookDTO;
 
 public interface BookService {
@@ -13,12 +15,13 @@ public interface BookService {
 	// 3. 도서 삭제
 	public int bookDelete(int bookId);
 	
-	// 4. 도서아이디 조회
+	// 4. 도서 아이디로 조회
 	public BookDTO bookSelectById(int bookId);
 	
-	// 5. 도서목록 조회
-	public BookDTO bookSelectByTitle(String title);
+	// 5. 도서 제목으로 조회
+	public List<BookDTO> bookSelectByTitle(String title);
 	
 	// 6. 전체목록 조회
+	public List<BookDTO> bookSelectAll();
 	
 }

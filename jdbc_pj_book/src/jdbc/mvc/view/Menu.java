@@ -17,7 +17,7 @@ public class Menu {
 		
 		while(true) {
 			System.out.println("*------------------------------------------*");
-			System.out.println("    1. 도서관리   2. 게시판    3. 나    4. 종료   ");
+			System.out.println("    1. 도서관리   2. 게시판    3. 고양이   4. 종료   ");
 			System.out.println("*------------------------------------------*");
 			System.out.print("▶ 메뉴 선택 : ");
 			int menuNo = sc.nextInt();
@@ -48,9 +48,9 @@ public class Menu {
 	public void book_menu() {
 		System.out.println("<<< book_menu >>>");
 		
-		System.out.println("*--------------------------------------------------------------------------*");
-		System.out.println("  1. 추가  2. 수정  3. 삭제  4. 도서아이디 조회  5. 도서목록 타이틀 조회  6. 전체목록 조회  7. 종료  ");
-		System.out.println("*--------------------------------------------------------------------------*");
+		System.out.println("*-------------------------------------------------------------------------------*");
+		System.out.println("  1. 추가  2. 수정  3. 삭제  4. 도서 아이디로 조회  5. 도서 제목으로 조회  6. 전체목록 조회  7. 종료  ");
+		System.out.println("*-------------------------------------------------------------------------------*");
 		System.out.print("▶ 메뉴 선택 : ");
 		int menuNo = sc.nextInt();
 		sc.nextLine();
@@ -69,8 +69,10 @@ public class Menu {
 				bc.bookSelectId(bookId());
 				break;
 			case 5 :
+				bc.bookSelectTitle(bookTitle());
 				break;
 			case 6 :
+				bc.bookSelectAll();
 				break;
 			case 7 : 
 				System.out.println("프로그램을 종료합니다.");

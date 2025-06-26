@@ -1,5 +1,8 @@
 package jdbc.mvc.view;
 
+import java.util.Iterator;
+import java.util.List;
+
 import jdbc.mvc.dto.BookDTO;
 
 /*
@@ -29,10 +32,20 @@ public class BookView {
 	}
 	
 	// 전체 도서목록
-	public void bookListAll() {
+	public void bookListAll(List<BookDTO> list) {
 		// 방법1. 향상된 for문 조회
+		for(BookDTO dto : list) {
+			System.out.println(dto);
+		}
+		
+		System.out.println();
 		
 		// 방법2. Iterator 조회
+		Iterator<BookDTO> ir = list.iterator();
+		while(ir.hasNext()) {
+			BookDTO dto = ir.next();
+			System.out.println(dto);
+		}
 		
 	}
 	

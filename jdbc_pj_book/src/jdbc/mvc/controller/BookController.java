@@ -1,5 +1,7 @@
 package jdbc.mvc.controller;
 
+import java.util.List;
+
 import jdbc.mvc.dto.BookDTO;
 import jdbc.mvc.service.BookServiceImpl;
 import jdbc.mvc.view.BookView;
@@ -18,7 +20,7 @@ public class BookController {
 	BookView view = new BookView();
 	
 	// 1. 도서 추가
-	public void bookAdd(BookDTO dto) {
+	public void bookAdd(BookDTO dto) { // sql문의 ?에 필요한 매개변수
 		System.out.println("<<< bookInsert() >>>");
 		System.out.println(dto);
 		
@@ -54,8 +56,8 @@ public class BookController {
 		}
 	}
 	
-	// 4. 도서아이디 조회
-	public void bookSelectId(int bookId) {
+	// 4. 도서 아이디로 조회
+	public void bookSelectId(int bookId) {	
 		System.out.println("<<< bookSelectId() >>>");
 		BookDTO dto = service.bookSelectById(bookId);
 		if(dto.getBookId() == bookId) {
@@ -65,13 +67,26 @@ public class BookController {
 		}
 	}
 	
-	// 5. 도서목록 조회
+	// 5. 도서 제목으로 조회
 	public void bookSelectTitle(String title) {
 		System.out.println("<<< bookSelectTitle() >>>");
+		List<BookDTO> list = service.bookSelectByTitle(title);
+		if (list != null) {
+			view.bookListAll(list);
+		} else {
+			view.bookErrorMsg("select");
+		}
+		
 	}
 	
-	// 6. 전체목록 조회
+	// 6. 전체 목록 조회
 	public void bookSelectAll() {
 		System.out.println("<<< bookSelectAll() >>>");
+		List<BookDTO> list = service.bookSelectAll();
+		if(list != null) {
+			view.bookListAll(list);
+		} else {
+			view.bookErrorMsg("select");
+		}
 	}
 }
