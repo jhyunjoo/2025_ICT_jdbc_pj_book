@@ -24,7 +24,7 @@ public class BookView {
 				System.out.println("도서 삭제 실패!!");
 				break;
 			case "select" :
-				System.out.println("도서 조회 실패!!");
+				System.out.println("도서 데이터가 존재하지 않습니다!!");
 				break;
 			default :
 				System.out.println("ERROR!!");
@@ -34,17 +34,21 @@ public class BookView {
 	// 전체 도서목록
 	public void bookListAll(List<BookDTO> list) {
 		// 방법1. 향상된 for문 조회
+		System.out.println("=== 방법1. 향상된 for문으로 조회 ===");
 		for(BookDTO dto : list) {
-			System.out.println(dto);
+			bookSelect(dto);
+			System.out.println();
 		}
 		
 		System.out.println();
 		
+		System.out.println("=== 방법2. Iterator로 조회 ===");
 		// 방법2. Iterator 조회
 		Iterator<BookDTO> ir = list.iterator();
 		while(ir.hasNext()) {
 			BookDTO dto = ir.next();
-			System.out.println(dto);
+			bookSelect(dto);
+			System.out.println();
 		}
 		
 	}

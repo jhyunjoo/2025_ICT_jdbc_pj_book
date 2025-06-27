@@ -14,6 +14,16 @@ import jdbc.mvc.dto.BookDTO;
 public class BookDAOImpl implements BookDAO {
 	
 	// 싱글톤
+	private static BookDAOImpl instance = new BookDAOImpl();
+	
+	private BookDAOImpl() {};
+	
+	public static BookDAOImpl getInstance() {
+		if(instance == null) {
+			instance = new BookDAOImpl();
+		}
+		return instance;
+	}
 
 	// DB 연결
 	String dbUrl = "jdbc:oracle:thin:@localhost:1521/xe";
@@ -221,10 +231,10 @@ public class BookDAOImpl implements BookDAO {
 			pstmt = conn.prepareStatement(query);
 			
 			// 조회
-			rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery();	// 실행문장
 
 			while(rs.next()) {
-				// DTO 생성 -> set -> list에 추가
+				// 각각의 DTO 생성 -> set -> list에 추가
 				BookDTO dto = new BookDTO();
 				
 				dto.setBookId(rs.getInt("bookId"));

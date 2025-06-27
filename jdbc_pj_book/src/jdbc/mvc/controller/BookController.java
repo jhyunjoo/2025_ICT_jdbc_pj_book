@@ -71,7 +71,7 @@ public class BookController {
 	public void bookSelectTitle(String title) {
 		System.out.println("<<< bookSelectTitle() >>>");
 		List<BookDTO> list = service.bookSelectByTitle(title);
-		if (list != null) {
+		if (!list.isEmpty()) {
 			view.bookListAll(list);
 		} else {
 			view.bookErrorMsg("select");
@@ -83,7 +83,7 @@ public class BookController {
 	public void bookSelectAll() {
 		System.out.println("<<< bookSelectAll() >>>");
 		List<BookDTO> list = service.bookSelectAll();
-		if(list != null) {
+		if(!list.isEmpty()) {
 			view.bookListAll(list);
 		} else {
 			view.bookErrorMsg("select");

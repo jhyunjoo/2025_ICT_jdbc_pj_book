@@ -7,7 +7,7 @@ import jdbc.mvc.dto.BookDTO;
 
 public class BookServiceImpl implements BookService{
 
-	BookDAOImpl dao = new BookDAOImpl();
+	BookDAOImpl dao = BookDAOImpl.getInstance();
 	
 	// 1. 도서추가
 	@Override
