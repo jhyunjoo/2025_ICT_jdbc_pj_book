@@ -28,3 +28,44 @@ CREATE TABLE mvc_book_tbl (
 );
 
 SELECT * FROM mvc_book_tbl;
+
+
+-- 2) 게시판 테이블
+DROP TABLE mvc_board_tbl CASCADE CONSTRAINTS;
+CREATE TABLE mvc_board_tbl (
+	boardNo			NUMBER(7)		PRIMARY KEY,	-- 글번호
+	boardTitle		VARCHAR2(50)	NOT NULL,		-- 글제목
+	boardContent 	CLOB			NOT NULL,		-- 글내용
+	boardId			VARCHAR2(50)	NOT NULL,		-- 작성자
+	boardRegDate	DATE			DEFAULT SYSDATE	-- 작성일
+);
+
+SELECT * FROM mvc_board_tbl;
+
+---------------------------------------------------------------------------------------------------------
+
+1. 플젝생성
+2. 패키지 및 파일생성
+3. 테이블 생성
+4. DTO 구현
+5. 전체 구현
+Main -> Menu -> View -> Controller -> Service -> DTO + DAO
+				View <- Controller <- Service <- DTO + DAO
+				
+Model : 모델 => 고객의 요청 처리 => DB 처리(입력,수정,삭제, 조회)
+View  : 뷰  => 결과 화면
+Controller : 컨트롤러 => 고객의 요청 및 흐름 제어 담당
+
+6. DAOImple에 싱글톤 구현
+
+pstmt.executeUpdate();		// I,U,D에 사용된다. 리턴타입은 int => 성공(1), 실패(0)
+pstmt.executeQuery();		// Select에 사용된다. 리턴타입은 ResultSet
+
+특수문자 단축키 : 한글모드 ㅁ + 한자키 
+
+// 에러정리
+java.sql.SQLException: 인덱스에서 누락된 IN 또는 OUT 매개변수 :: 
+=> ?와 pstmt 설정 개수가 안 맞을 때
+
+// 추가 성공 여부 => 
+sql developer에서 select 확인 - 성공

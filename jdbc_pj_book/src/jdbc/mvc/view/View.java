@@ -3,13 +3,14 @@ package jdbc.mvc.view;
 import java.util.Iterator;
 import java.util.List;
 
+import jdbc.mvc.dto.BoardDTO;
 import jdbc.mvc.dto.BookDTO;
 
 /*
  *  뷰 - 결과화면
  *  	 Book에 정보 출력, Book 에러메시지, Book 결과 조회
  */
-public class BookView {
+public class View {
 
 	// 에러메시지
 	public void bookErrorMsg(String msg) {
@@ -17,21 +18,33 @@ public class BookView {
 			case "insert" :
 				System.out.println("도서 추가 실패!!");
 				break;
+			case "boardInsert" :
+				System.out.println("글 추가 실패!!");
+				break;
 			case "update" :
 				System.out.println("도서 수정 실패!!");
+				break;
+			case "boardUpdate":
+				System.out.println("글 수정 실패!!");
 				break;
 			case "delete" :
 				System.out.println("도서 삭제 실패!!");
 				break;
+			case "boardDelete":
+				System.out.println("글 삭제 실패!!");
+				break;
 			case "select" :
 				System.out.println("도서 데이터가 존재하지 않습니다!!");
+				break;
+			case "boardSelect":
+				System.out.println("글 데이터가 존재하지 않습니다!!");
 				break;
 			default :
 				System.out.println("ERROR!!");
 		}
 	}
 	
-	// 전체 도서목록
+	// 전체 목록
 	public void bookListAll(List<BookDTO> list) {
 		// 방법1. 향상된 for문 조회
 		System.out.println("=== 방법1. 향상된 for문으로 조회 ===");
@@ -53,6 +66,23 @@ public class BookView {
 		
 	}
 	
+	public void boardListAll(List<BoardDTO> list) {
+		// 방법1. 향상된 for문 조회
+		System.out.println("=== 방법1. 향상된 for문으로 조회 ===");
+		for(BoardDTO dto : list) {
+			boardSelect(dto);
+		}
+		System.out.println(); 
+		
+		// 방법2. Iterator 조회
+		System.out.println("=== 방법2. Iterator로 조회 ===");
+		Iterator<BoardDTO> ir = list.iterator();
+		while(ir.hasNext()) {
+			BoardDTO dto = ir.next();
+			boardSelect(dto);
+		}
+	}
+	
 	// 1건 데이터 조회
 	public void bookSelect(BookDTO dto) {
 		System.out.println("도서 ID : " + dto.getBookId());
@@ -62,5 +92,13 @@ public class BookView {
 		System.out.println("가격 : " + dto.getPrice());
 		System.out.println("출판일 : " + dto.getPubdate());
 	}
+	
+	public void boardSelect(BoardDTO dto) {
+		System.out.println("글 번호 : " + dto.getBoardId());
+		System.out.println("글 제목 : " + dto.getBoardTitle());
+		System.out.println("글 내용 : " + dto.getBoardContent());
+		System.out.println("작성자 : " + dto.getBoardId());
+		System.out.println("작성일 : " + dto.getBoardRegDate());
+	} 
 	
 }

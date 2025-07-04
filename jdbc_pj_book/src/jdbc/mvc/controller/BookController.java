@@ -4,7 +4,7 @@ import java.util.List;
 
 import jdbc.mvc.dto.BookDTO;
 import jdbc.mvc.service.BookServiceImpl;
-import jdbc.mvc.view.BookView;
+import jdbc.mvc.view.View;
 
 /*
  *  작성일 : 2025.6.18
@@ -17,7 +17,7 @@ import jdbc.mvc.view.BookView;
 public class BookController {
 
 	BookServiceImpl service = new BookServiceImpl();
-	BookView view = new BookView();
+	View view = new View();
 	
 	// 1. 도서 추가
 	public void bookAdd(BookDTO dto) { // sql문의 ?에 필요한 매개변수
