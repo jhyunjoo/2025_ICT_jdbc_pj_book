@@ -5,6 +5,7 @@ import java.util.List;
 
 import jdbc.mvc.dto.BoardDTO;
 import jdbc.mvc.dto.BookDTO;
+import jdbc.mvc.dto.MovieDTO;
 
 /*
  *  뷰 - 결과화면
@@ -18,28 +19,54 @@ public class View {
 			case "insert" :
 				System.out.println("도서 추가 실패!!");
 				break;
-			case "boardInsert" :
-				System.out.println("글 추가 실패!!");
-				break;
 			case "update" :
 				System.out.println("도서 수정 실패!!");
-				break;
-			case "boardUpdate":
-				System.out.println("글 수정 실패!!");
 				break;
 			case "delete" :
 				System.out.println("도서 삭제 실패!!");
 				break;
-			case "boardDelete":
-				System.out.println("글 삭제 실패!!");
-				break;
 			case "select" :
 				System.out.println("도서 데이터가 존재하지 않습니다!!");
 				break;
-			case "boardSelect":
+			default :
+				System.out.println("ERROR!!");
+		}
+	}
+	
+	public void boardErrorMsg(String msg) {
+		switch(msg) {
+			case "insert" :
+				System.out.println("글 추가 실패!!");
+				break;
+			case "update":
+				System.out.println("글 수정 실패!!");
+				break;
+			case "delete":
+				System.out.println("글 삭제 실패!!");
+				break;
+			case "select":
 				System.out.println("글 데이터가 존재하지 않습니다!!");
 				break;
 			default :
+				System.out.println("ERROR!!");
+		}
+	}
+	
+	public void movieErroMsg(String msg) {
+		switch(msg) {
+			case "insert" :
+				System.out.println("영화 추가 실패!!");
+				break;
+			case "update" :
+				System.out.println("영화 수정 실패!!");
+				break;
+			case "delete" :
+				System.out.println("영화 삭제 실패!!");
+				break;
+			case "select" :
+				System.out.println("영화 데이터가 존재하지 않습니다.!!");
+				break;
+			default : 
 				System.out.println("ERROR!!");
 		}
 	}
@@ -83,6 +110,22 @@ public class View {
 		}
 	}
 	
+	public void movieListAll(List<MovieDTO> list) {
+		System.out.println("=== 방법1. 향상된 for문으로 조회 ===");
+		for(MovieDTO dto : list) {
+			movieSelect(dto);
+			System.out.println();
+		}
+		System.out.println();
+		System.out.println("=== 방법2. Iterator로 조회 ===");
+		Iterator<MovieDTO> ir = list.iterator();
+		while(ir.hasNext()) {
+			MovieDTO dto = ir.next();
+			movieSelect(dto);
+			System.out.println();
+		}
+	}
+	
 	// 1건 데이터 조회
 	public void bookSelect(BookDTO dto) {
 		System.out.println("도서 ID : " + dto.getBookId());
@@ -94,11 +137,21 @@ public class View {
 	}
 	
 	public void boardSelect(BoardDTO dto) {
-		System.out.println("글 번호 : " + dto.getBoardId());
+		System.out.println("글 번호 : " + dto.getBoardNo());
 		System.out.println("글 제목 : " + dto.getBoardTitle());
 		System.out.println("글 내용 : " + dto.getBoardContent());
 		System.out.println("작성자 : " + dto.getBoardId());
 		System.out.println("작성일 : " + dto.getBoardRegDate());
 	} 
 	
+	public void movieSelect(MovieDTO dto) {
+		System.out.println("영화 번호 : " + dto.getMovieNo());
+		System.out.println("영화 제목 : " + dto.getMovieTitle());
+		System.out.println("개봉일 : " + dto.getMovieRegDate());
+		System.out.println("등급 : " + dto.getRating());
+		System.out.println("장르 : " + dto.getGenre());
+		System.out.println("감독 : " + dto.getDirector());
+		System.out.println("출연배우 : " + dto.getActor());
+		System.out.println("배급사 : " + dto.getDistributor());
+	}
 }

@@ -42,6 +42,21 @@ CREATE TABLE mvc_board_tbl (
 
 SELECT * FROM mvc_board_tbl;
 
+-- 3) 영화 테이블(SCOTT_05 계정)
+DROP TABLE mvc_movie_tbl CASCADE CONSTRAINTS;
+CREATE TABLE mvc_movie_tbl (
+	movieNo			NUMBER(7)		PRIMARY KEY,	-- 영화번호
+	movieTitle		VARCHAR2(200)	NOT NULL,		-- 영화제목
+	movieRegDate	DATE			DEFAULT SYSDATE,-- 개봉일
+	rating 			VARCHAR2(20)	NOT NULL,		-- 등급
+	genre			VARCHAR2(100)	NOT NULL,		-- 장르
+	director		VARCHAR2(50)	NOT NULL,		-- 감독
+	actor			VARCHAR2(100) 	NOT NULL,		-- 출연배우
+	distributor		VARCHAR2(50)					-- 배급사
+);
+
+SELECT * FROM mvc_movie_tbl;
+
 ---------------------------------------------------------------------------------------------------------
 
 1. 플젝생성

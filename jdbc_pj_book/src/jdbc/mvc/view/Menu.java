@@ -4,8 +4,10 @@ import java.util.Scanner;
 
 import jdbc.mvc.controller.BoardController;
 import jdbc.mvc.controller.BookController;
+import jdbc.mvc.controller.MovieController;
 import jdbc.mvc.dto.BoardDTO;
 import jdbc.mvc.dto.BookDTO;
+import jdbc.mvc.dto.MovieDTO;
 
 public class Menu {
 	
@@ -14,13 +16,14 @@ public class Menu {
 	// 컨트롤러
 	BookController bc = new BookController();
 	BoardController boardCr = new BoardController();
+	MovieController mc = new MovieController();
 	
 	// 1. 도서관리  2. 게시판  3. 내가 좋아하는 주제  4. 종료
 	public void displayMenu() {
 		
 		while(true) {
 			System.out.println("*------------------------------------------*");
-			System.out.println("    1. 도서관리   2. 게시판    3. 고양이   4. 종료   ");
+			System.out.println("    1. 도서관리   2. 게시판    3. 영화   4. 종료   ");
 			System.out.println("*------------------------------------------*");
 			System.out.print("▶ 메뉴 선택 : ");
 			int menuNo = sc.nextInt();
@@ -34,7 +37,7 @@ public class Menu {
 					board_menu();
 					break;
 				case 3 :
-					me_menu();
+					movie_menu();
 					break;
 				case 4 : 
 					System.out.println("프로그램을 종료합니다.");
@@ -193,8 +196,91 @@ public class Menu {
 		return boardId;
 	}
 
-	// 3. 나
-	public void me_menu() {
-		System.out.println("<<< me_menu >>>");
+	// 3. 영화
+	public void movie_menu() {
+		System.out.println("<<< movie_menu >>>");
+		
+		System.out.println("*------------------------------------------------------------------------------------------*");
+		System.out.println("1.추가   2.수정   3. 삭제   4.영화번호 조회   5.영화제목 조회   6. 영화장르 조회   7. 전체목록 조회   8. 종료");
+		System.out.println("*------------------------------------------------------------------------------------------*");
+		System.out.print("▶ 메뉴 선택 : ");
+		int menuNo = sc.nextInt();
+		sc.nextLine();
+		
+		switch(menuNo) {
+			case 1 :
+				mc.movieInsert(movieInput());
+				break;
+			case 2 :
+				mc.movieUpdate(movieNo(), movieInput());
+				break;
+			case 3 :
+				mc.movieDelete(movieNo());
+				break;
+			case 4 :
+				mc.movieSelectByNo(movieNo());
+				break;
+			case 5 :
+				mc.movieSelectByTitle(movieTitle());
+				break;
+			case 6 :
+				mc.movieSelectByGenre(movieGenre());
+				break;
+			case 7 :
+				mc.movieSelectByAll();
+				break;
+			case 8 :
+				System.out.println("프로그램을 종료합니다.");
+				System.out.println();
+				return;
+			default :
+				System.out.println("메뉴를 선택해주세요.");
+		}
+	}
+	
+	private MovieDTO movieInput() {
+		
+		MovieDTO dto = new MovieDTO();
+		
+		System.out.print("영화 제목 : ");
+		dto.setMovieTitle(sc.nextLine()); 
+		
+		System.out.print("개봉일 : ");
+		dto.setMovieRegDate(sc.nextLine()); 
+		
+		System.out.print("등급 : ");
+		dto.setRating(sc.nextLine()); 
+		
+		System.out.print("장르 : ");
+		dto.setGenre(sc.nextLine()); 
+		
+		System.out.print("감독 : ");
+		dto.setDirector(sc.nextLine()); 
+		
+		System.out.print("출연배우 : ");
+		dto.setActor(sc.nextLine()); 
+		
+		System.out.print("배급사 : ");
+		dto.setDistributor(sc.nextLine()); 
+		
+		return dto;
+	}
+	
+	private int movieNo() {
+		System.out.print("영화번호 : ");
+		int movieNo = sc.nextInt();
+		sc.nextLine();
+		
+		return movieNo;
+	}
+	
+	private String movieTitle() {
+		System.out.print("영화제목 : ");
+		return sc.nextLine();
+	}
+	
+	private String movieGenre() {
+		System.out.print("장르 : ");
+		return sc.nextLine();
 	}
 }

@@ -18,7 +18,7 @@ public class BoardController {
 		if(insertInt == 1) {
 			System.out.println("글 추가 성공 " + insertInt);
 		} else {
-			view.bookErrorMsg("boardInsert");
+			view.boardErrorMsg("insert");
 		}
 	}
 	
@@ -29,7 +29,7 @@ public class BoardController {
 		if(updateCnt == 1) {
 			System.out.println("글 수정 성공 " + updateCnt);
 		} else {
-			view.bookErrorMsg("boardUpdate");
+			view.boardErrorMsg("update");
 		}
 	}
 	
@@ -40,7 +40,7 @@ public class BoardController {
 		if(deleteCnt == 1) {
 			System.out.println("글 삭제 성공 " + deleteCnt);
 		} else {
-			view.bookErrorMsg("boardDelete");
+			view.boardErrorMsg("delete");
 		}
 	}
 	
@@ -51,7 +51,7 @@ public class BoardController {
 		if(dto.getBoardNo() == boardNo) {
 			view.boardSelect(dto);
 		} else {
-			view.bookErrorMsg("boardSelect");
+			view.boardErrorMsg("select");
 		}
 	}
 	
@@ -62,7 +62,7 @@ public class BoardController {
 		if(!list.isEmpty()) { 
 			view.boardListAll(list); 
 		} else {
-			view.bookErrorMsg("boardSelect"); 
+			view.boardErrorMsg("select"); 
 		}
 	}
 	
@@ -73,7 +73,7 @@ public class BoardController {
 		if(!list.isEmpty()) {
 			view.boardListAll(list);
 		} else {
-			view.bookErrorMsg("boardSelect");
+			view.boardErrorMsg("select");
 		}
 	}
 	
@@ -84,7 +84,7 @@ public class BoardController {
 		if(!list.isEmpty()) {
 			view.boardListAll(list);
 		} else {
-			view.bookErrorMsg("boardSelect");
+			view.boardErrorMsg("select");
 		}
 	}
 
